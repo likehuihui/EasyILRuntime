@@ -1,0 +1,21 @@
+ManifestFileVersion: 0
+CRC: 1833694283
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: test/cube.ab
+      Dependencies: {}
+    Info_1:
+      Name: test/cube2.ab
+      Dependencies:
+        Dependency_0: test/depends_base.ab
+    Info_2:
+      Name: test/cube3.ab
+      Dependencies:
+        Dependency_0: test/depends_base.ab
+    Info_3:
+      Name: 666
+      Dependencies: {}
+    Info_4:
+      Name: test/depends_base.ab
+      Dependencies: {}

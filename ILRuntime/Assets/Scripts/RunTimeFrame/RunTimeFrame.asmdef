@@ -1,0 +1,10 @@
+{
+    "name": "RunTimeFrame",
+    "references": [
+        "Middle"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false
+}
