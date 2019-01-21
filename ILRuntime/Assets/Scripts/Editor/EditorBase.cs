@@ -15,6 +15,7 @@ namespace K.Editors
 {
     public class EditorBase : EditorWindow
     {
+        public string configName = "";
         public static string ConfigPath
         {
             get
