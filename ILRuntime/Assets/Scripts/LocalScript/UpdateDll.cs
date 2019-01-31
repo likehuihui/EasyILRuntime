@@ -29,7 +29,6 @@ namespace K.LocalWork
         private Dictionary<string, DllVersion> localDL;
         private DllVersionList netDL;
         private DllVersionList local;
-        private ProgressBar progress;
         private string localPath;
         // Use this for initialization
         public void Open()
@@ -37,7 +36,7 @@ namespace K.LocalWork
             localPath = Application.dataPath + "/StreamingAssets/";
             netDL = new DllVersionList();
             localDL = new Dictionary<string, DllVersion>();
-            progress = GameObject.Find("ProgressBar").GetComponent<ProgressBar>();
+          //  progress = GameObject.Find("ProgressBar").GetComponent<ProgressBar>();
             InitGame();
         }
         void CreatDllSetting(string txt)
@@ -62,7 +61,7 @@ namespace K.LocalWork
             WWW www = new WWW(url);
             while (!www.isDone)
             {
-                progress.SetValue(www.progress, "获取配置");
+                //progress.SetValue(www.progress, "获取配置");
                 yield return new WaitForEndOfFrame();
             }
             if (string.IsNullOrEmpty(www.error))
@@ -98,7 +97,7 @@ namespace K.LocalWork
             WWW www = new WWW(url);
             while (!www.isDone)
             {
-                progress.SetValue(www.progress, "下载资源:" + needUpdate[0].name);
+               // progress.SetValue(www.progress, "下载资源:" + needUpdate[0].name);
                 yield return new WaitForEndOfFrame();
             }
             if (string.IsNullOrEmpty(www.error))
@@ -107,7 +106,7 @@ namespace K.LocalWork
                 zh.UnZip(www.bytes, localPath + "RunTimeFrame/");
                 while (!zh.isDone)
                 {
-                    progress.SetValue(zh.progress, "解压资源:" + needUpdate[0].name);
+                   // progress.SetValue(zh.progress, "解压资源:" + needUpdate[0].name);
                     yield return new WaitForEndOfFrame();
                 }
                 if (zh.error != null)
