@@ -67,6 +67,7 @@
     <Compile Include="Assets\OtherPlugins\ILRunTime\Scripts\Examples\08_MonoBehaviour\Editor\MonoBehaviourAdapterEditor.cs" />
     <Compile Include="Assets\Scripts\Editor\DependentsCrosses.cs" />
     <Compile Include="Assets\Scripts\Editor\EditorAssetBundleWin.cs" />
+    <Compile Include="Assets\Scripts\Editor\EditorBase.cs" />
     <Compile Include="Assets\Scripts\Editor\EditorClientWindow.cs" />
     <Compile Include="Assets\Scripts\Editor\EditorDLL.cs" />
     <Compile Include="Assets\Scripts\Editor\EditorMainWindow.cs" />
