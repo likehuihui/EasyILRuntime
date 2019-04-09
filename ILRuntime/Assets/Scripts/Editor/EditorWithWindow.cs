@@ -25,5 +25,21 @@ namespace K.Editors
         {
             EditorDLL.Open();
         }
+        public static string PlatformDirName
+        {
+            get
+            {
+                string name;
+
+#if UNITY_STANDALONE
+                name = "pc/";
+#elif UNITY_IPHONE
+        name = "ios/";
+#elif UNITY_ANDROID
+                name = "android/";
+#endif
+                return name;
+            }
+        }
     }
 }

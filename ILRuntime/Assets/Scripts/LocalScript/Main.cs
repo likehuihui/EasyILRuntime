@@ -6,11 +6,56 @@ using System.Reflection;
 using UnityEngine;
 namespace K.LocalWork
 {
+    public enum PlatType
+    {
+        Plat_HuaErJie = 1,
+        Plat_123 = 2,
+        Plat_MG = 3,
+        HuaErJie_BoWei = 100,
+        HuaErJie_XianWan = 101,
+        DaCaiShen = 102,
+    }
+    /// <summary>
+    /// 皮肤的枚举
+    /// 枚举的变量名和Resources下的目录名相同
+    /// </summary>
+    public enum ESkin
+    {
+        /// <summary>
+        /// 华尔街
+        /// </summary>
+        hua_er_jie,
+
+        /// <summary>
+        /// 大财神
+        /// </summary>
+        da_cai_shen
+    }
+    /// <summary>
+    /// 皮肤的枚举
+    /// 枚举的变量名和Resources下的目录名相同
+    /// </summary>
+    public enum ESkin996
+    {
+        /// <summary>
+        /// 华尔街
+        /// </summary>
+        game_996,
+
+        /// <summary>
+        /// 大财神
+        /// </summary>
+        game_995
+    }
     public class Main : MonoBehaviour
     {
+        public PlatType type;
+        public ESkin skin;
+        public ESkin996 skin996;
         [System.Serializable]
         public class RunTimeConfig
         {
+
             [Header("是否使用dll")]
             public bool userDll = false;
             [Header("是否使用本地资源")]
@@ -66,7 +111,7 @@ namespace K.LocalWork
         void Start()
         {
             if (runtimeConfig.userDll)
-                StartDll();
+                StartDLL();
             else
             {
                 Debug.Log("Run Script!");
@@ -75,13 +120,13 @@ namespace K.LocalWork
                 {
                     MethodInfo method = type.GetMethod(runtimeConfig.methodName, BindingFlags.Static | BindingFlags.Public);
                     method.Invoke(null, null);
-                }            
+                }
             }
             ResourcesCentre.Instance.Init(runtimeConfig.isUseLocalResourse, Global.ResourcesPath + runtimeConfig.ABManifestName + "/" + runtimeConfig.ABManifestName);
-            GameObject cube= ResourcesCentre.Instance.Load<GameObject>("test/cube2.ab", "Panel1");
-            cube= Instantiate(cube);
+            GameObject cube = ResourcesCentre.Instance.Load<GameObject>("test/cube2.ab", "Panel1");
+            cube = Instantiate(cube);
         }
-        private void StartDll()
+        private void StartDLL()
         {
             appdomain = new ILRuntime.Runtime.Enviorment.AppDomain();
             appdomain.DebugService.StartDebugService(56000);

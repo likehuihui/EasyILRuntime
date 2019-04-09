@@ -13,36 +13,38 @@ namespace K.Editors
 {
     public class EditorDLL : EditorBase
     {
-        public class DllConfig
+        [System.Serializable]
+        internal class DllConfig
         {
             /// <summary>
             /// 编译工具
             /// </summary>
-            public string devenvPath;
+            public string devenvPath="vs";
 
             /// <summary>
             /// 开发目录
             /// </summary>
-            public string ilDevelopDir;
+            public string ilDevelopDir="dic";
 
             /// <summary>
             /// 项目目录
             /// </summary>
-            public string ilProjDir;
+            public string ilProjDir="dic";
 
             /// <summary>
             /// 项目csproj路径
             /// </summary>
-            public string ilProjPath;
+            public string ilProjPath="dic";
 
             /// <summary>
             /// 是否在发布DLL的时候自动拷贝代码
             /// </summary>
-            public bool isAudoCopy;
+            public bool isAudoCopy=false;
         }
-        public DllConfig config;
-        public string configName;
-        public static void Open()
+        [SerializeField]
+        internal DllConfig config;
+        public string configName = "DllEditor.json";
+        public static void Open() 
         {
             EditorDLL ab = EditorWindow.GetWindow<EditorDLL>("编辑窗口", true);
             ab.minSize = new Vector2(640, 360);
@@ -51,7 +53,9 @@ namespace K.Editors
         }
         private void OnEnable()
         {
-           config = LoadConfig<DllConfig>(configName);
+            config = LoadConfig<DllConfig>(configName);
+            if (config == null)
+                config = new DllConfig();
         }
         private void OnGUI()
         {
@@ -59,7 +63,7 @@ namespace K.Editors
             EditorGUILayout.BeginHorizontal();
             if (GUILayout.Button("保存配置"))
             {
-                //  SaveConfig();
+                SaveConfig(config, configName);
             }
             if (GUILayout.Button("拷贝代码"))
             {

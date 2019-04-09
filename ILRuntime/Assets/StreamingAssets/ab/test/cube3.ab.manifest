@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 4110889869
+CRC: 557494850
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: fb6e0b47a6f27b1df95a01c1b1b1764b
+    Hash: 4eb740e15924e3e4d12d8f165719b48b
   TypeTreeHash:
     serializedVersion: 2
     Hash: 4956b4d7373a70cc872cac983908d706
@@ -26,6 +26,5 @@ ClassTypes:
 Assets:
 - Assets/Test/Panel2.prefab
 - Assets/Test/Panel.prefab
-- Assets/Test/Panel3.prefab
-Dependencies:
-- F:/MyWork/EasyILRuntime/ILRuntime/Assets/StreamingAssets/ab/test/depends_base.ab
+- Assets/Resources/Panel3.prefab
+Dependencies: []

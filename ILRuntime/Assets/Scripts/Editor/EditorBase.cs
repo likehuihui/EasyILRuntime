@@ -1,5 +1,6 @@
 ﻿using LitJson;
 using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using UnityEditor;
 using UnityEngine;
 
@@ -7,18 +8,17 @@ namespace K.Editors
 {
     public class EditorBase : EditorWindow
     {
-        private static string dirName="Res";
+        private static string dirName = "Res";
         /// <summary>
         /// 编辑器生成的配置文件保存目录
         /// </summary>
         /// <returns></returns>
-        static string ConfigDir
+        public string ConfigDir
         {
             get
             {
                 DirectoryInfo temp = Directory.GetParent(Application.dataPath);
-                //  string dir = FileSystem.CombineDirs(true, temp.FullName, "EditorConfig", EditorMenu.PlatformDirName);
-                string dir = string.Format("{0}/{1}", temp.Name, dirName);
+                string dir = FileSystem.CombineDirs(true, temp.FullName, "EditorConfig", EditorWithWindow.PlatformDirName);
                 if (!Directory.Exists(dir))
                 {
                     Directory.CreateDirectory(dir);
@@ -32,10 +32,17 @@ namespace K.Editors
         /// </summary>
         /// <param name="data">配置的数据</param>
         /// <param name="fileName">文件名</param>
-        public static void SaveConfig(object data, string fileName)
+        internal void SaveConfig(object data, string fileName)
         {
+            string path = Path.Combine(ConfigDir, fileName);
+            //BinaryFormatter bf = new BinaryFormatter();
+            //FileStream file = File.Create(path);
+            //bf.Serialize(file, data);
+            //file.Close();
             string json = JsonMapper.ToJson(data);
-            File.WriteAllText(Path.Combine(ConfigDir, fileName), json);
+            string url = Path.Combine(ConfigDir, fileName);
+            File.WriteAllText(url, json);
+            Debug.Log("保存成功!");
         }
 
         /// <summary>
@@ -44,11 +51,16 @@ namespace K.Editors
         /// <typeparam name="T"></typeparam>
         /// <param name="fileName">配置文件名称</param>
         /// <returns></returns>
-        public static T LoadConfig<T>(string fileName)
+        internal T LoadConfig<T>(string fileName)
         {
             string path = Path.Combine(ConfigDir, fileName);
             if (File.Exists(path))
             {
+                //BinaryFormatter bf = new BinaryFormatter();
+                //FileStream file = File.Open(path, FileMode.Open);
+                //object data = bf.Deserialize(file) ;       
+                //file.Close();
+                //return (T)data;
                 string json = File.ReadAllText(path);
                 return JsonMapper.ToObject<T>(json);
             }

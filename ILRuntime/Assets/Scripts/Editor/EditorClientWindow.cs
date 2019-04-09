@@ -10,50 +10,46 @@ using UnityEditor;
 using UnityEngine;
 namespace K.Editors
 {
-    public class EditorClientWindow : EditorWindow
+    public class EditorClientWindow : EditorBase
     {
-        public static ClientData clientData;
+        public ClientData clientData;
         /// <summary>
         /// 是否是新增加平台
         /// </summary>
         private static bool addOre;
- 
-        public static void Open(ClientData data,bool addOrEditor)
+        private ClientData editorData;
+        public void Open(ClientData data, bool addOrEditor)
         {
             addOre = addOrEditor;
-            //clientData = new ClientData();
-            //clientData.platform = data.platform;
-            //clientData.gameName = data.gameName;
-            //clientData.gameID = data.gameID;
-            //clientData.version = data.version;
-            //clientData.iconPath = data.iconPath;
-            //clientData.preloadPath = data.preloadPath;
-            //clientData.windowsName = data.windowsName;
-            //clientData.androidName = data.androidName;
 
-             clientData = data;
-            EditorClientWindow ab = EditorWindow.GetWindow<EditorClientWindow>("平台数据", true);
-            ab.minSize = new Vector2(640, 360);
-            ab.maxSize = new Vector2(1280, 720);
-            ab.Show();
+            clientData = data;
+            editorData = new ClientData();
+            editorData.androidName = clientData.androidName;
+            editorData.platform = clientData.platform;
+            editorData.gameName = clientData.gameName;
+            editorData.gameID = clientData.gameID;
+            editorData.version = clientData.version;
+            editorData.iconPath = clientData.iconPath;
+            editorData.preloadPath = clientData.preloadPath;
+            editorData.windowsName = clientData.windowsName;
         }
         private void OnGUI()
         {
             EditorGUILayout.BeginVertical();
-            clientData.platform = EditorGUILayout.TextField("平台名称:", clientData.platform);
-            clientData.gameName = EditorGUILayout.TextField("游戏名称:", clientData.gameName);
-            clientData.gameID = EditorGUILayout.TextField("游戏ID:", clientData.gameID);
-            clientData.version = EditorGUILayout.TextField("版本号:", clientData.version);
-            clientData.iconPath = EditorGUILayout.TextField("icon路劲:", clientData.iconPath);
-            clientData.preloadPath = EditorGUILayout.TextField("主场景路径:", clientData.preloadPath);
-            clientData.windowsName = EditorGUILayout.TextField("pc名称:", clientData.windowsName);
-            clientData.androidName = EditorGUILayout.TextField("Android名称:", clientData.androidName);
-        
+            editorData.platform = EditorGUILayout.TextField("平台名称:", editorData.platform);
+            editorData.gameName = EditorGUILayout.TextField("游戏名称:", editorData.gameName);
+            editorData.gameID = EditorGUILayout.TextField("游戏ID:", editorData.gameID);
+            editorData.version = EditorGUILayout.TextField("版本号:", editorData.version);
+            editorData.iconPath = EditorGUILayout.TextField("icon路劲:", editorData.iconPath);
+            editorData.preloadPath = EditorGUILayout.TextField("主场景路径:", editorData.preloadPath);
+            editorData.windowsName = EditorGUILayout.TextField("pc名称:", editorData.windowsName);
+            editorData.androidName = EditorGUILayout.TextField("Android名称:", editorData.androidName);
+
             if (!addOre)
             {
-                if (GUILayout.Button("保存信息"))
+                if (GUILayout.Button("保存配置"))
                 {
-                    EditorMainWindow.SaveData(clientData);
+                    clientData = editorData;
                     ShowNotification(new GUIContent("保存成功:" + clientData.gameName + "+" + clientData.gameID + "+" + clientData.version));
                 }
             }
@@ -61,14 +57,14 @@ namespace K.Editors
             {
                 if (GUILayout.Button("增加平台"))
                 {
-                    bool succeed=  EditorMainWindow.AddClient(clientData);
+                    bool succeed = EditorMainWindow.AddClient(clientData);
                     if (succeed)
                     {
                         ShowNotification(new GUIContent("添加成功:" + clientData.gameName + "+" + clientData.gameID + "+" + clientData.version));
                     }
                     else
                     {
-                        ShowNotification(new GUIContent("添加失败!已有平台:"+ clientData.platform));
+                        ShowNotification(new GUIContent("添加失败!已有平台:" + clientData.platform));
                     }
                 }
             }
