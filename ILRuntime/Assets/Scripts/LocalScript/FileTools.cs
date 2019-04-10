@@ -4,6 +4,7 @@
  *    标题:
  *    功能:
 */
+using K.Editors;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,6 +13,19 @@ using UnityEngine;
 
 public class FileTools
 {
+    /// <summary>
+    /// 结构体写入本地
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="path"></param>
+    /// <param name="name"></param>
+    /// <param name="info"></param>
+    public static void CreateFile<T>(string path, string name, T info)
+    {
+        string msg = LitJson.JsonMapper.ToJson(info);
+        CreateFile(path, name, msg);
+        //LitJson.JsonMapper.
+    }
     /// <summary>
     /// 文本写入本地
     /// </summary>
@@ -205,5 +219,49 @@ public class FileTools
     {
         string[] str = url.Split('/');
         return str[str.Length - 1];
+    }
+    /// <summary>
+    /// 得到本地dll目录
+    /// </summary>
+    /// <param name="dic"></param>
+    /// <returns></returns>
+    public static string GetLocalPath(string dic="")
+    {
+#if UNITY_EDITOR
+        DirectoryInfo temp = Directory.GetParent(Application.dataPath);
+        //string dir = FileSystem.CombineDirs(true, temp.FullName, dic);
+        string dir = string.Format("{0}/Res/{1}/dll/{2}", temp.FullName, GetPlatform, dic);
+        if (!Directory.Exists(dir))
+        {
+            Directory.CreateDirectory(dir);
+        }
+        
+        return dir;
+#else
+        return string.Format("{0}/res/{1}/{2}", Application.streamingAssetsPath, GetPlatform, dic);
+#endif 
+    }
+    /// <summary>
+    /// dll网络地址(中间部分)
+    /// </summary>
+    /// <param name="dic"></param>
+    /// <returns></returns>
+    public static string GetNetPath(string url,string endurl)
+    {
+        return string.Format("{0}/{1}/{2}/{3}", url, GetPlatform,"dll", endurl);
+    }
+    private static string GetPlatform
+    {
+        get
+        {
+#if UNITY_IOS
+        return "ios";
+#elif UNITY_ANDROID
+        return "android";
+#else
+            return "pc";
+#endif
+        }
+
     }
 }

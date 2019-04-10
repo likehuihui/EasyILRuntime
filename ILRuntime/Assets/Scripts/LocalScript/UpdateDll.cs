@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using LitJson;
-using UnityEngine.UI;
 namespace K.LocalWork
 {
 
@@ -11,7 +10,7 @@ namespace K.LocalWork
     {
         public class DllVersion
         {
-            public string name;
+            public string dllName;
             public int version;
         }
         public class DllVersionList
@@ -22,37 +21,46 @@ namespace K.LocalWork
             }
             public List<DllVersion> item;
         }
-        private string urlServer = "39.104.184.3/client_assets/0_RunTime_Test/resources";
+        private string urlServer = "D:/ServerResource";
         private long nowUtc;
         private string jsonName = "dllVersion.json";
-        private string dllName = "dllVersion.zip";
         private Dictionary<string, DllVersion> localDL;
         private DllVersionList netDL;
         private DllVersionList local;
         private string localPath;
-        // Use this for initialization
-        public void Open()
+        private Action end;
+        private Action<float, string> progress;
+        private Action<string> updateFail;
+        private void Start()
         {
-            localPath = Application.dataPath + "/StreamingAssets/";
+            localPath = FileTools.GetLocalPath();
+        }
+        // Use this for initialization
+        public void Run(Action end)
+        {
+            this.end = end;
             netDL = new DllVersionList();
             localDL = new Dictionary<string, DllVersion>();
-          //  progress = GameObject.Find("ProgressBar").GetComponent<ProgressBar>();
             InitGame();
-        }
-        void CreatDllSetting(string txt)
-        {
-            FileTools.CreateFile(Application.dataPath, "dllVersion.json", txt);
         }
         void InitGame()
         {
             nowUtc = DateTime.UtcNow.ToFileTimeUtc();
-            string url = string.Format("http://{0}/{1}?v={2}", urlServer, jsonName, nowUtc);
-            local = FileTools.ReadText<DllVersionList>(localPath + "/" + jsonName);
+            string url = FileTools.GetNetPath("file://" + urlServer, jsonName + "?v=" + nowUtc);
+            local = FileTools.ReadText<DllVersionList>(localPath + jsonName);
             if (local == null)
+            {
                 local = new DllVersionList();
+                DllVersion dv = new DllVersion();
+                dv.dllName = Main.Instance.runtimeConfig.runTimeName + ".zip";
+                dv.version = 0;
+                local.item.Add(dv);
+                FileTools.CreateFile(localPath, jsonName, local);
+            }
+
             for (int i = 0; i < local.item.Count; i++)
             {
-                localDL.Add(local.item[i].name, local.item[i]);
+                localDL.Add(local.item[i].dllName, local.item[i]);
             }
             StartCoroutine(DownSetting(url));
         }
@@ -61,7 +69,8 @@ namespace K.LocalWork
             WWW www = new WWW(url);
             while (!www.isDone)
             {
-                //progress.SetValue(www.progress, "获取配置");
+                if (progress != null)
+                    progress.Invoke(www.progress, "获取配置");
                 yield return new WaitForEndOfFrame();
             }
             if (string.IsNullOrEmpty(www.error))
@@ -70,9 +79,9 @@ namespace K.LocalWork
                 netDL = JsonMapper.ToObject<DllVersionList>(www.text);
                 for (int i = 0; i < netDL.item.Count; i++)
                 {
-                    if (localDL.ContainsKey(netDL.item[i].name))
+                    if (localDL.ContainsKey(netDL.item[i].dllName))
                     {
-                        if (netDL.item[i].version > localDL[netDL.item[i].name].version)
+                        if (netDL.item[i].version > localDL[netDL.item[i].dllName].version)
                         {
                             needUpdateDll.Add(netDL.item[i]);
                         }
@@ -83,21 +92,32 @@ namespace K.LocalWork
                     }
                 }
                 if (needUpdateDll.Count > 0)
+                {
                     StartCoroutine(DownDll(needUpdateDll));
+                }
+                else
+                {
+                    if (end != null)
+                        end();
+                }
             }
             else
             {
+                if (updateFail != null)
+                    updateFail.Invoke("配置获取错误");
                 Debug.LogError("配置获取错误");
             }
         }
         IEnumerator DownDll(List<DllVersion> needUpdate)
         {
             nowUtc = DateTime.UtcNow.ToFileTimeUtc();
-            string url = string.Format("http://{0}/{1}?v={2}", urlServer, needUpdate[0].name, nowUtc);
+            string url = FileTools.GetNetPath("file://" + urlServer, needUpdate[0].dllName + "?v=" + nowUtc);
             WWW www = new WWW(url);
             while (!www.isDone)
             {
-               // progress.SetValue(www.progress, "下载资源:" + needUpdate[0].name);
+                Debug.Log(www.progress);
+                if (progress != null)
+                    progress.Invoke(www.progress, "下载资源:" + needUpdate[0].dllName);
                 yield return new WaitForEndOfFrame();
             }
             if (string.IsNullOrEmpty(www.error))
@@ -106,20 +126,22 @@ namespace K.LocalWork
                 zh.UnZip(www.bytes, localPath + "RunTimeFrame/");
                 while (!zh.isDone)
                 {
-                   // progress.SetValue(zh.progress, "解压资源:" + needUpdate[0].name);
+                    if (progress != null)
+                        progress.Invoke(www.progress, "解压资源:" + needUpdate[0].dllName);
                     yield return new WaitForEndOfFrame();
                 }
                 if (zh.error != null)
                 {
-                    //seterror("脚本解压失败，请检查网络环境，并重启游戏");
-                    Debug.Log(zh.error);
+                    if (updateFail != null)
+                        updateFail.Invoke("脚本解压失败，请检查网络环境，并重启游戏");
+                    Debug.LogError(zh.error);
                     yield break;
                 }
                 www.Dispose();
                 bool isCover = false;
                 for (int i = 0; i < local.item.Count; i++)
                 {
-                    if (local.item[i].name == needUpdate[0].name)
+                    if (local.item[i].dllName == needUpdate[0].dllName)
                     {
                         isCover = true;
                         local.item[i].version = needUpdate[0].version;
@@ -141,10 +163,14 @@ namespace K.LocalWork
                 string localTxt = JsonMapper.ToJson(local);
                 Debug.Log("保存文件:" + localTxt);
                 FileTools.CreateFile(localPath, jsonName, localTxt);
+                if (end != null)
+                    end();
             }
             else
             {
-                Debug.LogError("下载失败:" + needUpdate[0].name);
+                if (updateFail != null)
+                    updateFail.Invoke("下载失败:" + needUpdate[0].dllName);
+                Debug.LogError("下载失败:" + needUpdate[0].dllName);
             }
 
         }

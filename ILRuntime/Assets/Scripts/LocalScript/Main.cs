@@ -6,52 +6,52 @@ using System.Reflection;
 using UnityEngine;
 namespace K.LocalWork
 {
-    public enum PlatType
-    {
-        Plat_HuaErJie = 1,
-        Plat_123 = 2,
-        Plat_MG = 3,
-        HuaErJie_BoWei = 100,
-        HuaErJie_XianWan = 101,
-        DaCaiShen = 102,
-    }
-    /// <summary>
-    /// 皮肤的枚举
-    /// 枚举的变量名和Resources下的目录名相同
-    /// </summary>
-    public enum ESkin
-    {
-        /// <summary>
-        /// 华尔街
-        /// </summary>
-        hua_er_jie,
+    //public enum PlatType
+    //{
+    //    Plat_HuaErJie = 1,
+    //    Plat_123 = 2,
+    //    Plat_MG = 3,
+    //    HuaErJie_BoWei = 100,
+    //    HuaErJie_XianWan = 101,
+    //    DaCaiShen = 102,
+    //}
+    ///// <summary>
+    ///// 皮肤的枚举
+    ///// 枚举的变量名和Resources下的目录名相同
+    ///// </summary>
+    //public enum ESkin
+    //{
+    //    /// <summary>
+    //    /// 华尔街
+    //    /// </summary>
+    //    hua_er_jie,
 
-        /// <summary>
-        /// 大财神
-        /// </summary>
-        da_cai_shen
-    }
-    /// <summary>
-    /// 皮肤的枚举
-    /// 枚举的变量名和Resources下的目录名相同
-    /// </summary>
-    public enum ESkin996
-    {
-        /// <summary>
-        /// 华尔街
-        /// </summary>
-        game_996,
+    //    /// <summary>
+    //    /// 大财神
+    //    /// </summary>
+    //    da_cai_shen
+    //}
+    ///// <summary>
+    ///// 皮肤的枚举
+    ///// 枚举的变量名和Resources下的目录名相同
+    ///// </summary>
+    //public enum ESkin996
+    //{
+    //    /// <summary>
+    //    /// 华尔街
+    //    /// </summary>
+    //    game_996,
 
-        /// <summary>
-        /// 大财神
-        /// </summary>
-        game_995
-    }
+    //    /// <summary>
+    //    /// 大财神
+    //    /// </summary>
+    //    game_995
+    //}
     public class Main : MonoBehaviour
     {
-        public PlatType type;
-        public ESkin skin;
-        public ESkin996 skin996;
+        //  public PlatType type;
+        //public ESkin skin;
+        //  public ESkin996 skin996;
         [System.Serializable]
         public class RunTimeConfig
         {
@@ -60,8 +60,6 @@ namespace K.LocalWork
             public bool userDll = false;
             [Header("是否使用本地资源")]
             public bool isUseLocalResourse;
-            [Header("是否是开发模式")]
-            public bool develop;
             [Header("热更新类名")]
             public string className;
             [Header("热跟新方法名")]
@@ -74,10 +72,11 @@ namespace K.LocalWork
             public string ABManifestName;
 
         }
-        public UpdateDll updateDll;
+
         public ILRuntime.Runtime.Enviorment.AppDomain appdomain;
         //private string runTimeName = "RunTimeFrame";
         public RunTimeConfig runtimeConfig;
+        private UpdateDll updateDll;
         static Main instance;
         public static Main Instance
         {
@@ -99,6 +98,7 @@ namespace K.LocalWork
         private void Awake()
         {
             DontDestroyOnLoad(this.gameObject);
+            updateDll = GetComponent<UpdateDll>();
             if (instance == null)
             {
                 instance = this as Main;
@@ -110,11 +110,26 @@ namespace K.LocalWork
         }
         void Start()
         {
+            if (runtimeConfig.isUseLocalResourse)
+            {
+                UpdateDllEnd();
+            }
+            else
+            {
+                updateDll.Run(UpdateDllEnd);
+            }
+
+            //ResourcesCentre.Instance.Init(runtimeConfig.isUseLocalResourse, Global.ResourcesPath + runtimeConfig.ABManifestName + "/" + runtimeConfig.ABManifestName);
+            // GameObject cube = ResourcesCentre.Instance.Load<GameObject>("test/cube2.ab", "Panel1");
+            // cube = Instantiate(cube);
+        }
+        private void UpdateDllEnd()
+        {
             if (runtimeConfig.userDll)
                 StartDLL();
             else
             {
-                Debug.Log("Run Script!");
+                Debug.Log("Run Local Script!");
                 Type type = Type.GetType(runtimeConfig.className);
                 if (type != null)
                 {
@@ -122,9 +137,6 @@ namespace K.LocalWork
                     method.Invoke(null, null);
                 }
             }
-            ResourcesCentre.Instance.Init(runtimeConfig.isUseLocalResourse, Global.ResourcesPath + runtimeConfig.ABManifestName + "/" + runtimeConfig.ABManifestName);
-            GameObject cube = ResourcesCentre.Instance.Load<GameObject>("test/cube2.ab", "Panel1");
-            cube = Instantiate(cube);
         }
         private void StartDLL()
         {
@@ -141,12 +153,10 @@ namespace K.LocalWork
 
             //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             //这个DLL文件是直接编译HotFix_Project.sln生成的，已经在项目中设置好输出目录为StreamingAssets，在VS里直接编译即可生成到对应目录，无需手动拷贝
-#if UNITY_ANDROID
-        WWW www = new WWW(Application.streamingAssetsPath + "/IlRunTime/"+ runTimeName);
-#else
-            string url = "file:///F:/work/ILRuntimeU3D1.2_2018.2/ILRuntime/Library/ScriptAssemblies/RunTimeFrame.dll";
+            string url = FileTools.GetLocalPath(runtimeConfig.runTimeName) + "/" + runtimeConfig.runTimeName + ".dll"; // "file:///F:/work/ILRuntimeU3D1.2_2018.2/ILRuntime/Library/ScriptAssemblies/RunTimeFrame.dll";
+
+
             WWW www = new WWW(url);
-#endif
             while (!www.isDone)
                 yield return null;
             if (!string.IsNullOrEmpty(www.error))
@@ -195,7 +205,7 @@ namespace K.LocalWork
         }
         public void OnHotFixLoaded()
         {
-            Debug.Log("Run Dll!");
+            Debug.Log("Run DLL!");
             appdomain.Invoke("RunTimeFrame.Platform", "Main", null, null);
         }
     }

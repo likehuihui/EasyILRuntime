@@ -13,17 +13,16 @@ namespace RunTimeFrame
     {
         public static void Main()
         {
-            Preload pre = new Preload();
-            Button btn = GameObject.Find("Button").GetComponent<Button>();
-            btn.onClick.AddListener(OnClick);
-
-            //Debug.Log("bbb");
+         //   Preload pre = new Preload();
+          //  Button btn = GameObject.Find("Button").GetComponent<Button>();
+       //     btn.onClick.AddListener(OnClick);
         }
         public static void OnClick()
         {
 
-            Debug.Log("点击1");
-            SceneManager.LoadScene("GameScene");
+
+        //    Debug.Log("点击1");
+            //SceneManager.LoadScene("GameScene");
             //Application.LoadLevel(1);
         }
     }

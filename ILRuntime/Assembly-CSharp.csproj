@@ -438,6 +438,7 @@
     <Compile Include="Assets\Scripts\RunTimeFrame\UIManager\UIBase.cs" />
     <Compile Include="Assets\Scripts\RunTimeFrame\UIManager\UIManager.cs" />
     <Compile Include="Assets\Scripts\RunTimeFrame\UIManager\UIMaskManager.cs" />
+    <Compile Include="Assets\Scripts\RunTimeFrame\UpdateAB.cs" />
     <Compile Include="Assets\Test\BaseTcpProtocolBody.cs" />
     <Compile Include="Assets\Test\ByteBuffer.cs" />
     <Compile Include="Assets\Test\CallScript.cs" />
