@@ -4,20 +4,19 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2852FB91-E559-4319-8C25-0B8C388E90D4}</ProjectGuid>
+    <ProjectGuid>{E2B320AA-8EE0-4CAA-AFF5-B8FEA2B109B3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>RunTimeFrame</RootNamespace>
     <AssemblyName>RunTimeFrame</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\Res\</OutputPath>
+    <OutputPath>..\..\Res\pc\dll\RunTimeFrame\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -33,6 +32,7 @@
   <ItemGroup>
     <Reference Include="Assembly-CSharp">
       <HintPath>..\..\Library\ScriptAssemblies\Assembly-CSharp.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -41,11 +41,27 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="UnityEngine">
-      <HintPath>D:\unity2018.2.5\Editor\Data\Managed\UnityEngine.dll</HintPath>
+      <HintPath>D:\unity2018.2.20\Unity\Editor\Data\Managed\UnityEngine.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>D:\unity2018.2.20\Unity\Editor\Data\UnityExtensions\Unity\GUISystem\UnityEngine.UI.dll</HintPath>
+      <Private>False</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="codes\Loom.cs" />
+    <Compile Include="codes\MessageItem.cs" />
+    <Compile Include="codes\Platform.cs" />
+    <Compile Include="codes\Preload.cs" />
+    <Compile Include="codes\Test.cs" />
+    <Compile Include="codes\Tools\Global.cs" />
+    <Compile Include="codes\UIManager\SystemDefine.cs" />
+    <Compile Include="codes\UIManager\UIBase.cs" />
+    <Compile Include="codes\UIManager\UIManager.cs" />
+    <Compile Include="codes\UIManager\UIMaskManager.cs" />
+    <Compile Include="codes\UpdateAB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

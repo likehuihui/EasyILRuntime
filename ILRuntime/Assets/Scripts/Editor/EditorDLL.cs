@@ -19,17 +19,17 @@ namespace K.Editors
             /// <summary>
             /// 编译工具
             /// </summary>
-            public string devenvPath="vs";
+            public string devenvPath= "C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Community\\Common7\\IDE\\devenv";
 
             /// <summary>
             /// 开发目录
             /// </summary>
-            public string ilDevelopDir="dic";
+            public string ilDevelopDir=Application.dataPath+ "/Scripts/RunTimeFrame";
 
             /// <summary>
             /// 项目目录
             /// </summary>
-            public string ilProjDir="dic";
+            public string ilProjDir= Directory.GetParent(Application.dataPath).FullName+"/RunTimeFrame/RunTimeFrame";
 
             /// <summary>
             /// 项目csproj路径
@@ -55,7 +55,10 @@ namespace K.Editors
         {
             config = LoadConfig<DllConfig>(configName);
             if (config == null)
+            {
                 config = new DllConfig();
+            }
+                
         }
         private void OnGUI()
         {
@@ -74,20 +77,21 @@ namespace K.Editors
         }
         private void CopyDll()
         {
-            string projCodeDir = Path.Combine("../ILScript/ILScript", "codes");
-            if (Directory.Exists("./Assets/Scripts/RunTimeFrame/"))
+            string projCodeDir = Path.Combine(config.ilProjDir, "codes");
+            if (Directory.Exists(config.ilDevelopDir))
             {
                 if (Directory.Exists(projCodeDir))
                 {
                     Directory.Delete(projCodeDir, true);
                 }
-                FileUtil.CopyFileOrDirectory("./Assets/Scripts/RunTimeFrame/", projCodeDir);
+                FileUtil.CopyFileOrDirectory(config.ilDevelopDir, projCodeDir);
                 AssetDatabase.Refresh();
             }
             else
             {
                 ShowNotification(new GUIContent("文件夹不存在"));
             }
+            Debug.Log("拷贝完成");
         }
     }
 }

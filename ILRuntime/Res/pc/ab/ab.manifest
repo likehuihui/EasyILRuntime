@@ -1,0 +1,25 @@
+ManifestFileVersion: 0
+CRC: 2756570489
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: 666
+      Dependencies: {}
+    Info_1:
+      Name: test/cube3.ab
+      Dependencies:
+        Dependency_0: font.ab
+    Info_2:
+      Name: test/cube2.ab
+      Dependencies:
+        Dependency_0: font.ab
+    Info_3:
+      Name: test/cube.ab
+      Dependencies:
+        Dependency_0: 666
+    Info_4:
+      Name: test/1324
+      Dependencies: {}
+    Info_5:
+      Name: font.ab
+      Dependencies: {}

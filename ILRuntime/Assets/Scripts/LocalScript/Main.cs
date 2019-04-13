@@ -153,7 +153,7 @@ namespace K.LocalWork
 
             //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             //这个DLL文件是直接编译HotFix_Project.sln生成的，已经在项目中设置好输出目录为StreamingAssets，在VS里直接编译即可生成到对应目录，无需手动拷贝
-            string url = FileTools.GetLocalPath(runtimeConfig.runTimeName) + "/" + runtimeConfig.runTimeName + ".dll"; // "file:///F:/work/ILRuntimeU3D1.2_2018.2/ILRuntime/Library/ScriptAssemblies/RunTimeFrame.dll";
+            string url = FileTools.GetLocalDLLPath(runtimeConfig.runTimeName) + "/" + runtimeConfig.runTimeName + ".dll"; // "file:///F:/work/ILRuntimeU3D1.2_2018.2/ILRuntime/Library/ScriptAssemblies/RunTimeFrame.dll";
 
 
             WWW www = new WWW(url);

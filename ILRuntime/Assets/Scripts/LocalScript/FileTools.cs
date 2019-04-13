@@ -225,7 +225,7 @@ public class FileTools
     /// </summary>
     /// <param name="dic"></param>
     /// <returns></returns>
-    public static string GetLocalPath(string dic="")
+    public static string GetLocalDLLPath(string dic="")
     {
 #if UNITY_EDITOR
         DirectoryInfo temp = Directory.GetParent(Application.dataPath);
@@ -241,8 +241,22 @@ public class FileTools
         return string.Format("{0}/res/{1}/{2}", Application.streamingAssetsPath, GetPlatform, dic);
 #endif 
     }
+    public static string GetLocalPath(string name)
+    {
+//#if UNITY_EDITOR
+        DirectoryInfo temp = Directory.GetParent(Application.dataPath);
+        string dir = string.Format("{0}/Res/{1}", temp.FullName, GetPlatform);
+        if (!Directory.Exists(dir))
+        {
+            Directory.CreateDirectory(dir);
+        }
+        dir +="/"+ name;
+        return dir;
+//#else
+//#endif
+    }
     /// <summary>
-    /// dll网络地址(中间部分)
+    /// dll网络地址
     /// </summary>
     /// <param name="dic"></param>
     /// <returns></returns>
@@ -250,7 +264,7 @@ public class FileTools
     {
         return string.Format("{0}/{1}/{2}/{3}", url, GetPlatform,"dll", endurl);
     }
-    private static string GetPlatform
+    public static string GetPlatform
     {
         get
         {

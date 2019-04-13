@@ -31,9 +31,9 @@ namespace K.LocalWork
         private Action end;
         private Action<float, string> progress;
         private Action<string> updateFail;
-        private void Start()
+        private void Awake()
         {
-            localPath = FileTools.GetLocalPath();
+            localPath = FileTools.GetLocalDLLPath();
         }
         // Use this for initialization
         public void Run(Action end)

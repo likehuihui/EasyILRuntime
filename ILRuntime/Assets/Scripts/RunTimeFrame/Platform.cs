@@ -4,6 +4,7 @@
  *    标题:
  *    功能:
 */
+using K.LocalWork;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -13,9 +14,14 @@ namespace RunTimeFrame
     {
         public static void Main()
         {
-         //   Preload pre = new Preload();
-          //  Button btn = GameObject.Find("Button").GetComponent<Button>();
-       //     btn.onClick.AddListener(OnClick);
+            bool useLocalRes = K.LocalWork.Main.Instance.runtimeConfig.isUseLocalResourse;
+            ResSetting res= FileTools.ReadText<ResSetting>(FileTools.GetLocalPath("ResVersion.json"));
+            ResourcesCentre.Instance.Init(useLocalRes, FileTools.GetLocalPath("ab/")+ res.manifestName);
+            UpdateAB uab = new UpdateAB(FileTools.GetLocalPath("ab"), res);
+            uab.Start();
+            //   Preload pre = new Preload();
+            //  Button btn = GameObject.Find("Button").GetComponent<Button>();
+            //     btn.onClick.AddListener(OnClick);
         }
         public static void OnClick()
         {

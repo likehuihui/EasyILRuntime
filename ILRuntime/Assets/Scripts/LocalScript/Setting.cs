@@ -23,6 +23,7 @@ namespace K.LocalWork
     {
         public string name;
         public string version;
+        public long size;
     }
     public class Setting
     {

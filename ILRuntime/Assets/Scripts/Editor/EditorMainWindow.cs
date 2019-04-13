@@ -21,7 +21,7 @@ namespace K.Editors
     [Serializable]
     public class ClientData
     {
-        public  ClientData()
+        public ClientData()
         {
             platform = "新平台";
             gameName = PlayerSettings.productName;
@@ -31,8 +31,8 @@ namespace K.Editors
             preloadPath = "preloadUrl";
             windowsName = PlayerSettings.productName;
             DirectoryInfo temp = Directory.GetParent(Application.dataPath);
-            outpath = temp.FullName.Replace("\\","/");
-            outpath = outpath+"/AssetBundle/";
+            outpath = temp.FullName.Replace("\\", "/");
+            outpath = outpath + "/Res/"+ FileTools.GetPlatform+ "/ab";
         }
         public string outpath;
         public string platform;
@@ -83,6 +83,7 @@ namespace K.Editors
         private string configName = "Bulid.json";
         private Dictionary<string, DependentsCrosses> _crossDic = new Dictionary<string, DependentsCrosses>();
         private string platform;
+        private List<string> _files;
         private static BuildTarget targetPlatform
         {
             get
@@ -132,6 +133,7 @@ namespace K.Editors
             cdl = LoadConfig<ClientDataList>(configName);
             if (cdl == null)
                 cdl = new ClientDataList();
+            _files = new List<string>();
         }
         private void OnGUI()
         {
@@ -291,24 +293,42 @@ namespace K.Editors
         }
         public void CreatResSetting()
         {
+
             resSetting = new ResSetting();
             resSetting.manifestName = "ab";
-            string[] allName = AssetDatabase.GetAllAssetBundleNames();
-            for (int i = 0; i < allName.Length; i++)
+            GetFile(nowData.outpath);
+            for (int i = 0; i < _files.Count; i++)
             {
-                string url = nowData.outpath +"/"+ allName[i];
+                string file = _files[i];
+                EditorUtility.DisplayProgressBar("正在生成 res.json", string.Format("文件:{0}", file), ((float)i / resSetting.items.Count));
+                FileInfo fi = new FileInfo(file);
+                if (fi.Extension == ".manifest"|| fi.Extension == ".dll" || fi.Extension == ".pdb")
+                {
+                    continue;
+                }
                 ABItem item = new ABItem();
-                item.name = allName[i];
-                item.version = GetMD5(url);
-
+                item.name = _files[i].Replace(nowData.outpath, "").Replace("\\","/");
+                item.version = GetMD5(_files[i]);
+                item.size = fi.Length;
                 resSetting.items.Add(item);
             }
-            DirectoryInfo dir = Directory.GetParent(Application.dataPath);
-            string u = Path.Combine(dir.ToString(), "ProjectData/ResVersion.json");
+            string u = FileTools.GetLocalPath("ResVersion.json"); ;
             string data = JsonMapper.ToJson(resSetting);
             ShowNotification(new GUIContent("生成配置完成"));
-            System.Diagnostics.Process.Start(Path.Combine(dir.ToString(), "ProjectData"));
             File.WriteAllText(u, data);
+            EditorUtility.ClearProgressBar();
+        }
+        private void GetFile(string path)
+        {
+            string[] files = Directory.GetFiles(path);
+            _files.AddRange(files);
+
+            string[] subDirs = Directory.GetDirectories(path);
+            foreach (var subDir in subDirs)
+            {
+                //是目录
+                GetFile(subDir);
+            }
         }
         private void BuildAB()
         {
@@ -317,62 +337,6 @@ namespace K.Editors
                 Directory.CreateDirectory(nowData.outpath);
             }
             AssetBundleManifest buildManifest = BuildPipeline.BuildAssetBundles(nowData.outpath, BuildAssetBundleOptions.ChunkBasedCompression, targetPlatform);
-            //string[] allName = AssetDatabase.GetAllAssetBundleNames();
-            //Dictionary<string, List<string>> abbDic = new Dictionary<string, List<string>>();
-            //foreach (var abName in allName)
-            //{
-            //    var dir = Path.GetDirectoryName(abName);
-            //    if (false == _crossDic.ContainsKey(dir))
-            //    {
-            //        _crossDic[dir] = new DependentsCrosses();
-            //    }
-            //    DependentsCrosses cross = _crossDic[dir];
-
-            //    //AB包对应的资源
-            //    string[] assetPaths = AssetDatabase.GetAssetPathsFromAssetBundle(abName);
-            //    foreach (var assetPath in assetPaths)
-            //    {
-            //        //获取到资源
-            //        AssetImporter ai = AssetImporter.GetAtPath(assetPath);
-            //        if (ai.assetBundleVariant == "" || ai.assetBundleVariant == platform)
-            //        {
-            //            //这里必须用ai.assetBundleName才不会有assetBundleVariant标记
-            //            if (abbDic.ContainsKey(ai.assetBundleName) == false)
-            //            {
-            //                abbDic[ai.assetBundleName] = new List<string>();
-            //            }
-            //            abbDic[ai.assetBundleName].Add(assetPath);
-            //            cross.AddAssetPath(ai);
-            //        }
-            //    }
-            //}
-            ////提取出每个包的交叉资源
-            //foreach (var entry in _crossDic)
-            //{
-            //    var crossResult = entry.Value.GetCrossResult();
-            //    if (crossResult.Count > 0)
-            //    {
-            //        string dependsBaseName = string.Format("{0}/depends_base.ab", entry.Key);
-            //        abbDic[dependsBaseName] = crossResult;
-            //    }
-            //}
-            //AssetBundleBuild[] abbList = new AssetBundleBuild[abbDic.Count];
-            //int i = 0;
-            //foreach (var abb in abbDic)
-            //{
-            //    abbList[i] = new AssetBundleBuild();
-            //    abbList[i].assetBundleName = abb.Key;
-            //    abbList[i].assetNames = abb.Value.ToArray();
-            //    i++;
-            //}
-
-            //if (false == Directory.Exists(outPath))
-            //{
-            //    Directory.CreateDirectory(outPath);
-            //}
-
-            //   AssetBundleManifest abm = BuildPipeline.BuildAssetBundles(outPath, abbList, BuildAssetBundleOptions.ChunkBasedCompression, targetPlatform);
-            //  AssetDatabase.Refresh();
         }
         private void OnDisable()
         {
