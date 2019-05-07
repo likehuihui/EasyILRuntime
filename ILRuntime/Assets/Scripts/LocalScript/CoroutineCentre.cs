@@ -22,25 +22,16 @@ namespace K.LocalWork
                     if (instance == null)
                     {
                         GameObject obj = new GameObject();
+                        obj.name = "CoroutineCentre";
                         instance = obj.AddComponent<CoroutineCentre>();
                     }
                 }
                 return instance;
             }
         }
-        public void Go(IEnumerator routine)
+        private void Awake()
         {
-            StartCoroutine(routine);
-        }
-
-        public void Stop(IEnumerator routine)
-        {
-            StopCoroutine(routine);
-        }
-
-        public void StopAll()
-        {
-            StopAllCoroutines();
+            DontDestroyOnLoad(this.gameObject);
         }
     }
 }

@@ -13,6 +13,7 @@ using UnityEngine;
 
 public class FileTools
 {
+    public static string netUrl = "file://D:/ServerResource";
     /// <summary>
     /// 结构体写入本地
     /// </summary>
@@ -44,7 +45,7 @@ public class FileTools
         }
         else
         {
-            if (FileExist(path, name))
+            if (FileExist(path))
                 File.Delete(path + "//" + name);
         }
         if (!t.Exists)
@@ -92,9 +93,9 @@ public class FileTools
     /// <param name="path"></param>
     /// <param name="name"></param>
     /// <returns></returns>
-    public static bool FileExist(string path, string name)
+    public static bool FileExist(string path)
     {
-        FileInfo t = new FileInfo(path + "//" + name);
+        FileInfo t = new FileInfo(path);
         if (!t.Exists)
         {
             return false;
@@ -172,19 +173,20 @@ public class FileTools
     /// <param name="name"></param>
     /// <param name="info"></param>
     /// <param name="length"></param>
-    public static bool CreateModelFile(string path, string name, byte[] info)
+    public static bool CreateModelFile(string path, byte[] info)
     {
         //文件流信息
         //StreamWriter sw;
         try
         {
             Stream sw;
-            FileInfo t = new FileInfo(path + "//" + name);
-            if (!Directory.Exists(path))
+            FileInfo t = new FileInfo(path);
+            string[] p = path.Split('/');
+            string dir = path.Replace(p[p.Length - 1], "");
+            if (!Directory.Exists(dir))
             {
-                Directory.CreateDirectory(path);
+                Directory.CreateDirectory(dir);
             }
-            // Debug.Log(path + "//" + name);
             if (!t.Exists)
             {
                 //如果此文件不存在则创建
@@ -225,7 +227,7 @@ public class FileTools
     /// </summary>
     /// <param name="dic"></param>
     /// <returns></returns>
-    public static string GetLocalDLLPath(string dic="")
+    public static string GetLocalDLLPath(string dic = "")
     {
 #if UNITY_EDITOR
         DirectoryInfo temp = Directory.GetParent(Application.dataPath);
@@ -235,7 +237,7 @@ public class FileTools
         {
             Directory.CreateDirectory(dir);
         }
-        
+
         return dir;
 #else
         return string.Format("{0}/res/{1}/{2}", Application.streamingAssetsPath, GetPlatform, dic);
@@ -243,26 +245,30 @@ public class FileTools
     }
     public static string GetLocalPath(string name)
     {
-//#if UNITY_EDITOR
+        //#if UNITY_EDITOR
         DirectoryInfo temp = Directory.GetParent(Application.dataPath);
         string dir = string.Format("{0}/Res/{1}", temp.FullName, GetPlatform);
         if (!Directory.Exists(dir))
         {
             Directory.CreateDirectory(dir);
         }
-        dir +="/"+ name;
+        dir += "/" + name;
         return dir;
-//#else
-//#endif
+        //#else
+        //#endif
     }
     /// <summary>
     /// dll网络地址
     /// </summary>
     /// <param name="dic"></param>
     /// <returns></returns>
-    public static string GetNetPath(string url,string endurl)
+    public static string GetDllNetPath(string endurl)
     {
-        return string.Format("{0}/{1}/{2}/{3}", url, GetPlatform,"dll", endurl);
+        return string.Format("{0}/{1}/{2}/{3}", netUrl, GetPlatform, "dll", endurl);
+    }
+    public static string GetNetPath(string endurl)
+    {
+        return string.Format("{0}/{1}/{2}", netUrl, GetPlatform, endurl);
     }
     public static string GetPlatform
     {

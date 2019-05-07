@@ -92,12 +92,12 @@ namespace RunTimeFrame
         {
             if (isUse)
             {
-                CoroutineCentre.Instance.Go(LoadAsyncResource(prefabName, onLoaded, onProgress));
+                CoroutineCentre.Instance.StartCoroutine(LoadAsyncResource(prefabName, onLoaded, onProgress));
             }
             else
             {
                 AssetBundle ab = LoadAB(abName);
-                CoroutineCentre.Instance.Go(LoadAsyncAB(ab, prefabName, onLoaded, onProgress));
+                CoroutineCentre.Instance.StartCoroutine(LoadAsyncAB(ab, prefabName, onLoaded, onProgress));
             }
         }
         /// <summary>

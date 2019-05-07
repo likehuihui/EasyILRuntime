@@ -10,103 +10,121 @@ using UnityEngine;
 using K.LocalWork;
 using System.IO;
 using System;
+using LitJson;
+using UnityEngine.Networking;
 
 namespace RunTimeFrame
 {
     public class UpdateAB
     {
-        private string url;
+        private string netUrl;
+        private string localUrl;
         private ResSetting res;
-        public UpdateAB(string url, ResSetting res)
+        public ResSetting netRes;
+        private string resName = "ResVersion.json";
+        private List<ABItem> needUpdate = new List<ABItem>();
+        private List<ABItem> finishUpdate = new List<ABItem>();
+        private Action<float, string> progress;
+        public Action updateEnd;
+        public UpdateAB(ResSetting res, string url)
         {
-            this.url = url;
+            this.netUrl = url;
             this.res = res;
+            localUrl = FileTools.GetLocalPath("ab");
         }
-        public ResSetting resSetting;
+
         public void Start()
         {
-            //Rectangle r = new Rectangle(10,12);
-            //r.Display();
-            //ResSetting res= ResourcesCentre.Instance.Load<ResSetting>("","");
-           // ResSetting res = FileTools.ReadText<ResSetting>(url);
+            CoroutineCentre.Instance.StartCoroutine(LoadRes());
         }
-    }
-    [DeBugInfo(45, "Zara Ali", "12/8/2012", Message = "Return type mismatch")]
-    [DeBugInfo(49, "Nuha Ali", "10/10/2012", Message = "Unused variable")]
-  public  class Rectangle
-    {
-        // 成员变量
-        protected double length;
-        protected double width;
-        public Rectangle(double l, double w)
+        private IEnumerator LoadRes()
         {
-            length = l;
-            width = w;
+            WWW www = new WWW(netUrl + resName);
+            while (www.isDone == false)
+            {
+                yield return new WaitForEndOfFrame();
+            }
+            if (string.IsNullOrEmpty(www.error))
+            {
+                netRes = JsonMapper.ToObject<ResSetting>(www.text);
+                res.manifestName = netRes.manifestName;
+                List<ABItem> net = netRes.items;
+                List<ABItem> local = res.items;
+                needUpdate = new List<ABItem>(net.ToArray());
+                foreach (ABItem netab in net)
+                {
+                    foreach (ABItem localab in local)
+                    {
+                        if (netab.name == localab.name && netab.version == localab.version)
+                        {
+                            if (FileTools.FileExist(localUrl + localab.name) == true)
+                                needUpdate.Remove(netab);
+                        }
+                    }
+                }
+            }
+            CoroutineCentre.Instance.StartCoroutine(Update(needUpdate));
         }
-        [DeBugInfo(55, "Zara Ali", "19/10/2012",Message = "Return type mismatch")]
-        public double GetArea()
+        private IEnumerator Update(List<ABItem> net)
         {
-            return length * width;
-        }
-        [DeBugInfo(56, "Zara Ali", "19/10/2012")]
-        public void Display()
-        {
-            Debug.Log("Length: "+ length);
-            Debug.Log("Width: "+width);
-            Debug.Log("Area: "+GetArea());
-        }
-    }
-    [AttributeUsage(AttributeTargets.Class |
-    AttributeTargets.Constructor |
-    AttributeTargets.Field |
-    AttributeTargets.Method |
-    AttributeTargets.Property,
-    AllowMultiple = true)]
+            if (net.Count > 0)
+            {
+                UnityWebRequest webRequest = UnityWebRequest.Get(netUrl + "ab" + net[0].name);
+                yield return webRequest.SendWebRequest();
+                if (webRequest.isHttpError || webRequest.isNetworkError)
+                {
+                    Debug.Log(webRequest.error);
+                }
+                else
+                {
+                    while (!webRequest.isDone)
+                    {
+                        if (progress != null)
+                            progress.Invoke(webRequest.downloadProgress, "下载资源:" + net[0].name);
+                        yield return new WaitForEndOfFrame();
+                    }
+                    if (webRequest.isDone)
+                    {
+                        bool finish = FileTools.CreateModelFile(localUrl + net[0].name, webRequest.downloadHandler.data);
+                        if (progress != null)
+                            progress.Invoke(1, "下载资源:" + net[0].name);
+                        Debug.Log("下载完成:" + net[0].name);
+                        bool isIn = false;
+                        for (int i = 0; i < res.items.Count; i++)
+                        {
+                            if (res.items[i].name == net[0].name)
+                            {
+                                res.items.Remove(res.items[i]);
+                                res.items.Add(net[0]);
+                                isIn = true;
+                                break;
+                            }
+                        }
+                        if (isIn == false)
+                        {
+                            res.items.Add(net[0]);
+                        }
+                        net.RemoveAt(0);
+                        if (net.Count > 0)
+                        {
+                            CoroutineCentre.Instance.StartCoroutine(Update(net));
+                        }
+                        else
+                        {
+                            string u = FileTools.GetLocalPath("ResVersion.json");
+                            string data = JsonMapper.ToJson(res);
+                            File.WriteAllText(u, data);
+                            if (updateEnd != null)
+                                updateEnd.Invoke();
+                        }
+                    }
+                }
 
-    public class DeBugInfo : System.Attribute
-    {
-        private int bugNo;
-        private string developer;
-        private string lastReview;
-        public string message;
-
-        public DeBugInfo(int bg, string dev, string d)
-        {
-            this.bugNo = bg;
-            this.developer = dev;
-            this.lastReview = d;
-        }
-
-        public int BugNo
-        {
-            get
-            {
-                return bugNo;
             }
-        }
-        public string Developer
-        {
-            get
+            else
             {
-                return developer;
-            }
-        }
-        public string LastReview
-        {
-            get
-            {
-                return lastReview;
-            }
-        }
-        public string Message
-        {
-            get
-            {
-                return message;
-            }
-            set
-            {
-                message = value;
+                if (updateEnd != null)
+                    updateEnd.Invoke();
             }
         }
     }

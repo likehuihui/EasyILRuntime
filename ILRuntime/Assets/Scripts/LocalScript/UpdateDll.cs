@@ -21,7 +21,6 @@ namespace K.LocalWork
             }
             public List<DllVersion> item;
         }
-        private string urlServer = "D:/ServerResource";
         private long nowUtc;
         private string jsonName = "dllVersion.json";
         private Dictionary<string, DllVersion> localDL;
@@ -46,7 +45,7 @@ namespace K.LocalWork
         void InitGame()
         {
             nowUtc = DateTime.UtcNow.ToFileTimeUtc();
-            string url = FileTools.GetNetPath("file://" + urlServer, jsonName + "?v=" + nowUtc);
+            string url = FileTools.GetDllNetPath( jsonName + "?v=" + nowUtc);
             local = FileTools.ReadText<DllVersionList>(localPath + jsonName);
             if (local == null)
             {
@@ -111,7 +110,7 @@ namespace K.LocalWork
         IEnumerator DownDll(List<DllVersion> needUpdate)
         {
             nowUtc = DateTime.UtcNow.ToFileTimeUtc();
-            string url = FileTools.GetNetPath("file://" + urlServer, needUpdate[0].dllName + "?v=" + nowUtc);
+            string url = FileTools.GetDllNetPath(needUpdate[0].dllName + "?v=" + nowUtc);
             WWW www = new WWW(url);
             while (!www.isDone)
             {

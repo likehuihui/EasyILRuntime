@@ -15,9 +15,11 @@ namespace RunTimeFrame
         public static void Main()
         {
             bool useLocalRes = K.LocalWork.Main.Instance.runtimeConfig.isUseLocalResourse;
-            ResSetting res= FileTools.ReadText<ResSetting>(FileTools.GetLocalPath("ResVersion.json"));
-            ResourcesCentre.Instance.Init(useLocalRes, FileTools.GetLocalPath("ab/")+ res.manifestName);
-            UpdateAB uab = new UpdateAB(FileTools.GetLocalPath("ab"), res);
+            ResSetting res = FileTools.ReadText<ResSetting>(FileTools.GetLocalPath("ResVersion.json"));
+            if (res == null)
+                res = new ResSetting();
+            ResourcesCentre.Instance.Init(useLocalRes, FileTools.GetLocalPath("ab/") + res.manifestName);
+            UpdateAB uab = new UpdateAB(res, FileTools.GetNetPath(""));
             uab.Start();
             //   Preload pre = new Preload();
             //  Button btn = GameObject.Find("Button").GetComponent<Button>();
@@ -27,7 +29,7 @@ namespace RunTimeFrame
         {
 
 
-        //    Debug.Log("点击1");
+            //    Debug.Log("点击1");
             //SceneManager.LoadScene("GameScene");
             //Application.LoadLevel(1);
         }
