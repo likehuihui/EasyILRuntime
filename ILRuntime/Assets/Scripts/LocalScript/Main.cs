@@ -4,49 +4,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using UnityEngine;
+using UnityEngine.Networking;
+
 namespace K.LocalWork
 {
-    //public enum PlatType
-    //{
-    //    Plat_HuaErJie = 1,
-    //    Plat_123 = 2,
-    //    Plat_MG = 3,
-    //    HuaErJie_BoWei = 100,
-    //    HuaErJie_XianWan = 101,
-    //    DaCaiShen = 102,
-    //}
-    ///// <summary>
-    ///// 皮肤的枚举
-    ///// 枚举的变量名和Resources下的目录名相同
-    ///// </summary>
-    //public enum ESkin
-    //{
-    //    /// <summary>
-    //    /// 华尔街
-    //    /// </summary>
-    //    hua_er_jie,
-
-    //    /// <summary>
-    //    /// 大财神
-    //    /// </summary>
-    //    da_cai_shen
-    //}
-    ///// <summary>
-    ///// 皮肤的枚举
-    ///// 枚举的变量名和Resources下的目录名相同
-    ///// </summary>
-    //public enum ESkin996
-    //{
-    //    /// <summary>
-    //    /// 华尔街
-    //    /// </summary>
-    //    game_996,
-
-    //    /// <summary>
-    //    /// 大财神
-    //    /// </summary>
-    //    game_995
-    //}
     public class Main : MonoBehaviour
     {
         //  public PlatType type;
@@ -155,13 +116,13 @@ namespace K.LocalWork
             //这个DLL文件是直接编译HotFix_Project.sln生成的，已经在项目中设置好输出目录为StreamingAssets，在VS里直接编译即可生成到对应目录，无需手动拷贝
             string url = FileTools.GetLocalDLLPath(runtimeConfig.runTimeName) + "/" + runtimeConfig.runTimeName + ".dll"; // "file:///F:/work/ILRuntimeU3D1.2_2018.2/ILRuntime/Library/ScriptAssemblies/RunTimeFrame.dll";
 
-
-            WWW www = new WWW(url);
+            UnityWebRequest www = UnityWebRequest.Get(url);
+            www.SendWebRequest();
             while (!www.isDone)
                 yield return null;
             if (!string.IsNullOrEmpty(www.error))
                 UnityEngine.Debug.LogError(www.error);
-            byte[] dll = www.bytes;
+            byte[] dll = www.downloadHandler.data;
             www.Dispose();
 
             //PDB文件是调试数据库，如需要在日志中显示报错的行号，则必须提供PDB文件，不过由于会额外耗用内存，正式发布时请将PDB去掉，下面LoadAssembly的时候pdb传null即可

@@ -39,14 +39,15 @@ namespace RunTimeFrame
         }
         private IEnumerator LoadRes()
         {
-            WWW www = new WWW(netUrl + resName);
+            UnityWebRequest www = UnityWebRequest.Get(netUrl + resName);
+            yield return www.SendWebRequest();
             while (www.isDone == false)
             {
                 yield return new WaitForEndOfFrame();
             }
             if (string.IsNullOrEmpty(www.error))
             {
-                netRes = JsonMapper.ToObject<ResSetting>(www.text);
+                netRes = JsonMapper.ToObject<ResSetting>(www.downloadHandler.text);
                 res.manifestName = netRes.manifestName;
                 List<ABItem> net = netRes.items;
                 List<ABItem> local = res.items;

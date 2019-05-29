@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using LitJson;
+using UnityEngine.Networking;
+
 namespace K.LocalWork
 {
 
@@ -65,17 +67,18 @@ namespace K.LocalWork
         }
         IEnumerator DownSetting(string url)
         {
-            WWW www = new WWW(url);
+            UnityWebRequest www = UnityWebRequest.Get(url);
+            www.SendWebRequest();
             while (!www.isDone)
             {
                 if (progress != null)
-                    progress.Invoke(www.progress, "获取配置");
+                    progress.Invoke(www.downloadProgress, "获取配置");
                 yield return new WaitForEndOfFrame();
             }
             if (string.IsNullOrEmpty(www.error))
             {
                 List<DllVersion> needUpdateDll = new List<DllVersion>();
-                netDL = JsonMapper.ToObject<DllVersionList>(www.text);
+                netDL = JsonMapper.ToObject<DllVersionList>(www.downloadHandler.text);
                 for (int i = 0; i < netDL.item.Count; i++)
                 {
                     if (localDL.ContainsKey(netDL.item[i].dllName))
@@ -111,22 +114,22 @@ namespace K.LocalWork
         {
             nowUtc = DateTime.UtcNow.ToFileTimeUtc();
             string url = FileTools.GetDllNetPath(needUpdate[0].dllName + "?v=" + nowUtc);
-            WWW www = new WWW(url);
+            UnityWebRequest www = UnityWebRequest.Get(url);
             while (!www.isDone)
             {
-                Debug.Log(www.progress);
+                Debug.Log(www.downloadProgress);
                 if (progress != null)
-                    progress.Invoke(www.progress, "下载资源:" + needUpdate[0].dllName);
+                    progress.Invoke(www.downloadProgress, "下载资源:" + needUpdate[0].dllName);
                 yield return new WaitForEndOfFrame();
             }
             if (string.IsNullOrEmpty(www.error))
             {
                 ZipHelper zh = new ZipHelper();
-                zh.UnZip(www.bytes, localPath + "RunTimeFrame/");
+                zh.UnZip(www.downloadHandler.data, localPath + "RunTimeFrame/");
                 while (!zh.isDone)
                 {
                     if (progress != null)
-                        progress.Invoke(www.progress, "解压资源:" + needUpdate[0].dllName);
+                        progress.Invoke(www.downloadProgress, "解压资源:" + needUpdate[0].dllName);
                     yield return new WaitForEndOfFrame();
                 }
                 if (zh.error != null)
