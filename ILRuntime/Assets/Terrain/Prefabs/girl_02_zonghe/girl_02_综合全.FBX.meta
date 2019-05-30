@@ -1,0 +1,626 @@
+fileFormatVersion: 2
+guid: 65420933ade6ed840b9bb9fe23d4a9a2
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Bip01 L Finger1Nub
+    100002: Bip01 L Finger11
+    100004: Bip01 L Finger0Nub
+    100006: Bip01 L Finger01
+    100008: Bip01 L UpperArm
+    100010: Bip01 L Clavicle
+    100012: Girl_02_Shoulder001
+    100014: Bone________04
+    100016: Bone________02
+    100018: Bone________03
+    100020: Bone________01
+    100022: Bone________02
+    100024: Bone________04
+    100026: Bone________01
+    100028: Bone___________08
+    100030: Bone___________06
+    100032: Bone________03
+    100034: Bone___________05
+    100036: Bone___________02
+    100038: Bone___________01
+    100040: Bone______________02
+    100042: Bone______________01
+    100044: Help_Point_Shoulder
+    100046: Bone___________04
+    100048: Bone___________03
+    100050: Help_Point_Hand_Left002
+    100052: Bip01 R Finger2Nub
+    100054: Bip01 R Finger21
+    100056: Bip01 R Finger1Nub
+    100058: Bip01 R Finger11
+    100060: Bip01 R Finger0Nub
+    100062: Bip01 R Finger01
+    100064: Bip01 R UpperArm
+    100066: Bip01 R Clavicle
+    100068: Bone___________03
+    100070: Bone___________02
+    100072: Help_Point_Hand_Left
+    100074: Bip01 L Finger2Nub
+    100076: Bip01 L Finger21
+    100078: //RootNode
+    100080: Help_Point_Hand_Left003
+    100082: Bone___________06
+    100084: Bone___________03
+    100086: Bone___________02
+    100088: Bone___________07
+    100090: Bone___________08
+    100092: Bone___________05
+    100094: Bone___________04
+    100096: Bip01 Prop1
+    100098: Bip01 Prop2
+    100100: Help_Point_Leg
+    100102: Bone___________07
+    100104: Bone___________01
+    100106: Bone______________02
+    100108: Bone___________01
+    100110: Bone___________04
+    100112: Bone___________01
+    100114: Bone___________02
+    100116: Bone______________01
+    100118: Help_Point_Foot
+    100120: Bip01 R Toe0Nub
+    100122: Bip01 R Toe0
+    100124: Bip01 R Foot
+    100126: Bip01 R Calf
+    100128: Bip01 R Thigh
+    100130: Bip01 L Toe0Nub
+    100132: Bip01 L Toe0
+    100134: Bip01 L Foot
+    100136: Bip01 L Calf
+    100138: Bip01 L Thigh
+    100140: Help_Point_Back
+    100142: Help_Point_Body
+    100144: Bone_L
+    100146: Bone_R
+    100148: Bone_R_______
+    100150: Point________R
+    100152: Bip01 R Finger2
+    100154: Bip01 R Finger1
+    100156: Bip01 R Finger0
+    100158: Bip01 R Hand
+    100160: Bip01 R Forearm
+    100162: Bone_L_______
+    100164: Point________L
+    100166: Bip01 L Finger2
+    100168: Bip01 L Finger1
+    100170: Bip01 L Finger0
+    100172: Bip01 L Hand
+    100174: Bip01 L Forearm
+    100176: Help_Point_Head
+    100178: Bip01 HeadNub
+    100180: Bip01 Head
+    100182: Bip01 Neck
+    100184: Bip01 Spine1
+    100186: Bip01 Spine
+    100188: Bip01 Pelvis
+    100190: Bip01
+    100192: Girl_02_Body001
+    100194: Girl_02_Leg001
+    100196: Girl_02_Head001
+    100198: Girl_02_Foot001
+    100200: Sword_02
+    100202: "Bone_L_\u80A9\u8180"
+    100204: "Bone_R_\u80A9\u8180"
+    100206: "Bone_\u524D\u88D9_01"
+    100208: "Bone_\u524D\u88D9_02"
+    100210: "Bone_\u524D\u88D9_03"
+    100212: "Bone_\u524D\u88D9_04"
+    100214: "Bone_\u524D\u98D8\u5E26_01"
+    100216: "Bone_\u524D\u98D8\u5E26_02"
+    100218: "Bone_\u524D\u98D8\u5E26_03"
+    100220: "Bone_\u524D\u98D8\u5E26_04"
+    100222: "Bone_\u53F3\u4FA7\u88D9_01"
+    100224: "Bone_\u53F3\u4FA7\u88D9_02"
+    100226: "Bone_\u53F3\u4FA7\u88D9_03"
+    100228: "Bone_\u53F3\u4FA7\u88D9_04"
+    100230: "Bone_\u53F3\u4FA7\u88D9_05"
+    100232: "Bone_\u53F3\u4FA7\u88D9_06"
+    100234: "Bone_\u53F3\u4FA7\u88D9_07"
+    100236: "Bone_\u53F3\u4FA7\u88D9_08"
+    100238: "Bone_\u53F3\u624B\u8896\u5B50_01"
+    100240: "Bone_\u53F3\u624B\u8896\u5B50_02"
+    100242: "Bone_\u540E\u8170\u7A57_01"
+    100244: "Bone_\u540E\u8170\u7A57_02"
+    100246: "Bone_\u540E\u88D9_01"
+    100248: "Bone_\u540E\u88D9_02"
+    100250: "Bone_\u540E\u88D9_03"
+    100252: "Bone_\u540E\u88D9_04"
+    100254: "Bone_\u5DE6\u4FA7\u88D9_01"
+    100256: "Bone_\u5DE6\u4FA7\u88D9_02"
+    100258: "Bone_\u5DE6\u4FA7\u88D9_03"
+    100260: "Bone_\u5DE6\u4FA7\u88D9_04"
+    100262: "Bone_\u5DE6\u4FA7\u88D9_05"
+    100264: "Bone_\u5DE6\u4FA7\u88D9_06"
+    100266: "Bone_\u5DE6\u4FA7\u88D9_07"
+    100268: "Bone_\u5DE6\u4FA7\u88D9_08"
+    100270: "Bone_\u5DE6\u624B\u8896\u5B50_01"
+    100272: "Bone_\u5DE6\u624B\u8896\u5B50_02"
+    100274: "Point_\u94C3\u94DB_L"
+    100276: "Point_\u94C3\u94DB_R"
+    400000: Bip01 L Finger1Nub
+    400002: Bip01 L Finger11
+    400004: Bip01 L Finger0Nub
+    400006: Bip01 L Finger01
+    400008: Bip01 L UpperArm
+    400010: Bip01 L Clavicle
+    400012: Girl_02_Shoulder001
+    400014: Bone________04
+    400016: Bone________02
+    400018: Bone________03
+    400020: Bone________01
+    400022: Bone________02
+    400024: Bone________04
+    400026: Bone________01
+    400028: Bone___________08
+    400030: Bone___________06
+    400032: Bone________03
+    400034: Bone___________05
+    400036: Bone___________02
+    400038: Bone___________01
+    400040: Bone______________02
+    400042: Bone______________01
+    400044: Help_Point_Shoulder
+    400046: Bone___________04
+    400048: Bone___________03
+    400050: Help_Point_Hand_Left002
+    400052: Bip01 R Finger2Nub
+    400054: Bip01 R Finger21
+    400056: Bip01 R Finger1Nub
+    400058: Bip01 R Finger11
+    400060: Bip01 R Finger0Nub
+    400062: Bip01 R Finger01
+    400064: Bip01 R UpperArm
+    400066: Bip01 R Clavicle
+    400068: Bone___________03
+    400070: Bone___________02
+    400072: Help_Point_Hand_Left
+    400074: Bip01 L Finger2Nub
+    400076: Bip01 L Finger21
+    400078: //RootNode
+    400080: Help_Point_Hand_Left003
+    400082: Bone___________06
+    400084: Bone___________03
+    400086: Bone___________02
+    400088: Bone___________07
+    400090: Bone___________08
+    400092: Bone___________05
+    400094: Bone___________04
+    400096: Bip01 Prop1
+    400098: Bip01 Prop2
+    400100: Help_Point_Leg
+    400102: Bone___________07
+    400104: Bone___________01
+    400106: Bone______________02
+    400108: Bone___________01
+    400110: Bone___________04
+    400112: Bone___________01
+    400114: Bone___________02
+    400116: Bone______________01
+    400118: Help_Point_Foot
+    400120: Bip01 R Toe0Nub
+    400122: Bip01 R Toe0
+    400124: Bip01 R Foot
+    400126: Bip01 R Calf
+    400128: Bip01 R Thigh
+    400130: Bip01 L Toe0Nub
+    400132: Bip01 L Toe0
+    400134: Bip01 L Foot
+    400136: Bip01 L Calf
+    400138: Bip01 L Thigh
+    400140: Help_Point_Back
+    400142: Help_Point_Body
+    400144: Bone_L
+    400146: Bone_R
+    400148: Bone_R_______
+    400150: Point________R
+    400152: Bip01 R Finger2
+    400154: Bip01 R Finger1
+    400156: Bip01 R Finger0
+    400158: Bip01 R Hand
+    400160: Bip01 R Forearm
+    400162: Bone_L_______
+    400164: Point________L
+    400166: Bip01 L Finger2
+    400168: Bip01 L Finger1
+    400170: Bip01 L Finger0
+    400172: Bip01 L Hand
+    400174: Bip01 L Forearm
+    400176: Help_Point_Head
+    400178: Bip01 HeadNub
+    400180: Bip01 Head
+    400182: Bip01 Neck
+    400184: Bip01 Spine1
+    400186: Bip01 Spine
+    400188: Bip01 Pelvis
+    400190: Bip01
+    400192: Girl_02_Body001
+    400194: Girl_02_Leg001
+    400196: Girl_02_Head001
+    400198: Girl_02_Foot001
+    400200: Sword_02
+    400202: "Bone_L_\u80A9\u8180"
+    400204: "Bone_R_\u80A9\u8180"
+    400206: "Bone_\u524D\u88D9_01"
+    400208: "Bone_\u524D\u88D9_02"
+    400210: "Bone_\u524D\u88D9_03"
+    400212: "Bone_\u524D\u88D9_04"
+    400214: "Bone_\u524D\u98D8\u5E26_01"
+    400216: "Bone_\u524D\u98D8\u5E26_02"
+    400218: "Bone_\u524D\u98D8\u5E26_03"
+    400220: "Bone_\u524D\u98D8\u5E26_04"
+    400222: "Bone_\u53F3\u4FA7\u88D9_01"
+    400224: "Bone_\u53F3\u4FA7\u88D9_02"
+    400226: "Bone_\u53F3\u4FA7\u88D9_03"
+    400228: "Bone_\u53F3\u4FA7\u88D9_04"
+    400230: "Bone_\u53F3\u4FA7\u88D9_05"
+    400232: "Bone_\u53F3\u4FA7\u88D9_06"
+    400234: "Bone_\u53F3\u4FA7\u88D9_07"
+    400236: "Bone_\u53F3\u4FA7\u88D9_08"
+    400238: "Bone_\u53F3\u624B\u8896\u5B50_01"
+    400240: "Bone_\u53F3\u624B\u8896\u5B50_02"
+    400242: "Bone_\u540E\u8170\u7A57_01"
+    400244: "Bone_\u540E\u8170\u7A57_02"
+    400246: "Bone_\u540E\u88D9_01"
+    400248: "Bone_\u540E\u88D9_02"
+    400250: "Bone_\u540E\u88D9_03"
+    400252: "Bone_\u540E\u88D9_04"
+    400254: "Bone_\u5DE6\u4FA7\u88D9_01"
+    400256: "Bone_\u5DE6\u4FA7\u88D9_02"
+    400258: "Bone_\u5DE6\u4FA7\u88D9_03"
+    400260: "Bone_\u5DE6\u4FA7\u88D9_04"
+    400262: "Bone_\u5DE6\u4FA7\u88D9_05"
+    400264: "Bone_\u5DE6\u4FA7\u88D9_06"
+    400266: "Bone_\u5DE6\u4FA7\u88D9_07"
+    400268: "Bone_\u5DE6\u4FA7\u88D9_08"
+    400270: "Bone_\u5DE6\u624B\u8896\u5B50_01"
+    400272: "Bone_\u5DE6\u624B\u8896\u5B50_02"
+    400274: "Point_\u94C3\u94DB_L"
+    400276: "Point_\u94C3\u94DB_R"
+    2300000: Sword_02
+    3300000: Sword_02
+    4300000: Girl_02_Foot001
+    4300002: Girl_02_Head001
+    4300004: Girl_02_Shoulder001
+    4300006: Girl_02_Leg001
+    4300008: Girl_02_Body001
+    4300010: Sword_02
+    7400000: Take 001
+    7400002: peacewait
+    7400004: run
+    7400006: attcked
+    7400008: warwait
+    7400010: attck1
+    7400012: attck2
+    7400014: dead
+    7400016: did
+    11100000: //RootNode
+    13700000: Girl_02_Shoulder001
+    13700002: Girl_02_Body001
+    13700004: Girl_02_Leg001
+    13700006: Girl_02_Head001
+    13700008: Girl_02_Foot001
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 01 - Default
+    second: {fileID: 2100000, guid: 60b2d8442e3c8c44e89077e42b57bf1e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 06 - Default
+    second: {fileID: 2100000, guid: 58dc66b2cf2f208488289b2134ce6879, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: peacewait
+      takeName: 
+      firstFrame: 0
+      lastFrame: 60
+      wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 1
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: run
+      takeName: 
+      firstFrame: 120
+      lastFrame: 146
+      wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 1
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: attcked
+      takeName: 
+      firstFrame: 151
+      lastFrame: 171
+      wrapMode: 1
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: warwait
+      takeName: 
+      firstFrame: 65
+      lastFrame: 115
+      wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 1
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: attck1
+      takeName: 
+      firstFrame: 176
+      lastFrame: 208
+      wrapMode: 1
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: attck2
+      takeName: 
+      firstFrame: 213
+      lastFrame: 249
+      wrapMode: 1
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: dead
+      takeName: 
+      firstFrame: 254
+      lastFrame: 324
+      wrapMode: 1
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: did
+      takeName: 
+      firstFrame: 323
+      lastFrame: 324
+      wrapMode: 1
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 0
+    importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 4
+    normalCalculationMode: 0
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  humanoidOversampling: 1
+  additionalBone: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

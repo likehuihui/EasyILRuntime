@@ -227,7 +227,7 @@ namespace K.Editors
             PlayerSettings.Android.keystorePass = "123456";
             PlayerSettings.Android.keyaliasPass = "123456";
             PlayerSettings.Android.targetSdkVersion = AndroidSdkVersions.AndroidApiLevel23;
-            group = GetBuildGroupByTarget(BuildTarget.Android);
+        //    group = GetBuildGroupByTarget(BuildTarget.Android);
 #elif UNITY_IPHONE
             group = GetBuildGroupByTarget(BuildTarget.iOS);
             PlayerSettings.SetArchitecture(group,0);

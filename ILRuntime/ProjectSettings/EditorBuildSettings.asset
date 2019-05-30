@@ -6,12 +6,33 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Scene/MainScene.unity
-    guid: 1241bf2cb262f194b9c41d73fb9236f1
-  - enabled: 0
     path: Assets/Scene/GameScene.unity
     guid: 6018949fc1c5a7d4cb5e0f1f11c81208
   - enabled: 1
-    path: Assets/Test/test.unity
-    guid: 1e402096891bd584f851b6edea67581e
+    path: Assets/EasyTouch/Example/C# Example/StartMenu.unity
+    guid: fd3d502e42b606d448890e94e7f7af49
+  - enabled: 1
+    path: Assets/EasyTouch/Example/C# Example/Examples for EasyTouch/ManipulationImage.unity
+    guid: c5ddf42bd8171bb43ad9190c8fff8ad0
+  - enabled: 1
+    path: Assets/EasyTouch/Example/C# Example/Examples for EasyTouch/MultiLayers.unity
+    guid: c9ea3425adac17245b80ff3a4cd74951
+  - enabled: 1
+    path: Assets/EasyTouch/Example/C# Example/Examples for EasyTouch/MultipleFingers.unity
+    guid: e3088df7196cb924db9e5de32ee1d984
+  - enabled: 1
+    path: Assets/EasyTouch/Example/C# Example/Examples for EasyTouch/OneFinger.unity
+    guid: 0a892ae559945b74e969a789b3497895
+  - enabled: 1
+    path: Assets/EasyTouch/Example/C# Example/Examples for EasyTouch/TwoFinger.unity
+    guid: 98a79d4aa4c290c48bee7f9af1c91ac7
+  - enabled: 1
+    path: Assets/EasyTouch/Example/C# Example/Example for EasyButton/ButtonExample.unity
+    guid: 1666367b8fffebe46bfcb0fcc2aac041
+  - enabled: 1
+    path: Assets/EasyTouch/Example/C# Example/Examples for EasyJoystick/FirstPerson-DirectMode-DoubleJoystick.unity
+    guid: fc15da51af5f75643836000d0afc7e54
+  - enabled: 1
+    path: Assets/EasyTouch/Example/C# Example/Examples for EasyJoystick/ThirdPerson-DirectEventMode-DoubleJoystick.unity
+    guid: 066dd2c59fc9c3144a7c4d8a994d77ea
   m_configObjects: {}

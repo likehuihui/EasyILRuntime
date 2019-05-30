@@ -1,0 +1,138 @@
+fileFormatVersion: 2
+guid: 6e0afd23c0ed0a94e9764bbd851cbe68
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: mogu_01_10
+    100004: mogu_01_06
+    100006: mogu_01_09
+    100008: mogu_01_12
+    100010: mogu_01_08
+    100012: mogu_01_07
+    100014: mogu_01_11
+    100016: mogu_01_05
+    100018: mogu_01_04
+    100020: mogu_01_03
+    100022: mogu_01_02
+    100024: mogu_01_01
+    400000: //RootNode
+    400002: mogu_01_10
+    400004: mogu_01_06
+    400006: mogu_01_09
+    400008: mogu_01_12
+    400010: mogu_01_08
+    400012: mogu_01_07
+    400014: mogu_01_11
+    400016: mogu_01_05
+    400018: mogu_01_04
+    400020: mogu_01_03
+    400022: mogu_01_02
+    400024: mogu_01_01
+    2300000: mogu_01_10
+    2300002: mogu_01_06
+    2300004: mogu_01_09
+    2300006: mogu_01_12
+    2300008: mogu_01_08
+    2300010: mogu_01_07
+    2300012: mogu_01_11
+    2300014: mogu_01_05
+    2300016: mogu_01_04
+    2300018: mogu_01_03
+    2300020: mogu_01_02
+    2300022: mogu_01_01
+    3300000: mogu_01_10
+    3300002: mogu_01_06
+    3300004: mogu_01_09
+    3300006: mogu_01_12
+    3300008: mogu_01_08
+    3300010: mogu_01_07
+    3300012: mogu_01_11
+    3300014: mogu_01_05
+    3300016: mogu_01_04
+    3300018: mogu_01_03
+    3300020: mogu_01_02
+    3300022: mogu_01_01
+    4300000: mogu_01_01
+    4300002: mogu_01_02
+    4300004: mogu_01_03
+    4300006: mogu_01_04
+    4300008: mogu_01_05
+    4300010: mogu_01_11
+    4300012: mogu_01_07
+    4300014: mogu_01_08
+    4300016: mogu_01_12
+    4300018: mogu_01_09
+    4300020: mogu_01_06
+    4300022: mogu_01_10
+    11100000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  humanoidOversampling: 1
+  additionalBone: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

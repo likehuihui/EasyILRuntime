@@ -1,0 +1,166 @@
+fileFormatVersion: 2
+guid: c820da4d44f732743861f073f6e70976
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Bone08
+    100002: Bone07
+    100004: Bone01
+    100006: Bone14
+    100008: Bone13
+    100010: Bone12
+    100012: S1_qizi07_zm_01
+    100014: Bone06
+    100016: Bone05
+    100018: Bone04
+    100020: Bone03
+    100022: Bone02
+    100024: Bone11
+    100026: Bone10
+    100028: Bone09
+    100030: Bone13(mirrored)
+    100032: Bone06(mirrored)01
+    100034: Bone05(mirrored)01
+    100036: Bone03(mirrored)
+    100038: Bone02(mirrored)
+    100040: Bone06(mirrored)
+    100042: Bone05(mirrored)
+    100044: Bone04(mirrored)
+    100046: //RootNode
+    100048: Bone14(mirrored)
+    100050: Bone04(mirrored)01
+    100052: Bone03(mirrored)01
+    100054: Bone02(mirrored)01
+    400000: Bone08
+    400002: Bone07
+    400004: Bone01
+    400006: Bone14
+    400008: Bone13
+    400010: Bone12
+    400012: S1_qizi07_zm_01
+    400014: Bone06
+    400016: Bone05
+    400018: Bone04
+    400020: Bone03
+    400022: Bone02
+    400024: Bone11
+    400026: Bone10
+    400028: Bone09
+    400030: Bone13(mirrored)
+    400032: Bone06(mirrored)01
+    400034: Bone05(mirrored)01
+    400036: Bone03(mirrored)
+    400038: Bone02(mirrored)
+    400040: Bone06(mirrored)
+    400042: Bone05(mirrored)
+    400044: Bone04(mirrored)
+    400046: //RootNode
+    400048: Bone14(mirrored)
+    400050: Bone04(mirrored)01
+    400052: Bone03(mirrored)01
+    400054: Bone02(mirrored)01
+    4300000: S1_qizi07_zm_01
+    7400000: Take 001
+    7400002: idle
+    7400004: S1_qizi07_zm_piao
+    11100000: //RootNode
+    13700000: Bone12
+    13700002: S1_qizi07_zm_01
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: S1_qizi07_zm_piao
+      takeName: 
+      firstFrame: 1
+      lastFrame: 80
+      wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 1
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  humanoidOversampling: 1
+  additionalBone: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
