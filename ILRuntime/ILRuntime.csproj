@@ -323,8 +323,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Bei_Character\Scrip\ChanceWeapon.cs" />
-    <Compile Include="Assets\Bei_Character\Scrip\Player.cs" />
     <Compile Include="Assets\OtherPlugins\Demigiant\DOTween\Modules\DOTweenModuleAudio.cs" />
     <Compile Include="Assets\OtherPlugins\Demigiant\DOTween\Modules\DOTweenModulePhysics.cs" />
     <Compile Include="Assets\OtherPlugins\Demigiant\DOTween\Modules\DOTweenModulePhysics2D.cs" />
@@ -595,12 +593,17 @@
     <Compile Include="Assets\OtherPlugins\ILRunTime\Scripts\Examples\08_MonoBehaviour\MonoBehaviourDemo.cs" />
     <Compile Include="Assets\OtherPlugins\ILRunTime\Scripts\Examples\09_Reflection\ReflectionDemo.cs" />
     <Compile Include="Assets\OtherPlugins\ILRunTime\Scripts\Examples\10_LitJson\LitJsonDemo.cs" />
+    <Compile Include="Assets\Res\Bei_Character\Scrip\ChanceWeapon.cs" />
+    <Compile Include="Assets\Res\Bei_Character\Scrip\Player.cs" />
     <Compile Include="Assets\Scripts\LocalScript\CoroutineCentre.cs" />
     <Compile Include="Assets\Scripts\LocalScript\FileSystem.cs" />
     <Compile Include="Assets\Scripts\LocalScript\FileTools.cs" />
+    <Compile Include="Assets\Scripts\LocalScript\FPS.cs" />
     <Compile Include="Assets\Scripts\LocalScript\Global.cs" />
     <Compile Include="Assets\Scripts\LocalScript\Main.cs" />
+    <Compile Include="Assets\Scripts\LocalScript\ProgressBar.cs" />
     <Compile Include="Assets\Scripts\LocalScript\Setting.cs" />
+    <Compile Include="Assets\Scripts\LocalScript\Touch.cs" />
     <Compile Include="Assets\Scripts\LocalScript\UpdateDll.cs" />
     <Compile Include="Assets\Scripts\LocalScript\ZipHelper.cs" />
     <Compile Include="Assets\Scripts\RunTimeFrame\Loom.cs" />

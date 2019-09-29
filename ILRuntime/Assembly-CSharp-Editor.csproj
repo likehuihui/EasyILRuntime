@@ -61,21 +61,27 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\EasyRunTime\Editor\DependentsCrosses.cs" />
+    <Compile Include="Assets\EasyRunTime\Editor\DllPublishConfigModel.cs" />
+    <Compile Include="Assets\EasyRunTime\Editor\DllPublishConfigVO.cs" />
+    <Compile Include="Assets\EasyRunTime\Editor\EditorAssetBundleWin.cs" />
+    <Compile Include="Assets\EasyRunTime\Editor\EditorBase.cs" />
+    <Compile Include="Assets\EasyRunTime\Editor\EditorClientWindow.cs" />
+    <Compile Include="Assets\EasyRunTime\Editor\EditorConfigUtil.cs" />
+    <Compile Include="Assets\EasyRunTime\Editor\EditorDLL.cs" />
+    <Compile Include="Assets\EasyRunTime\Editor\EditorMainWindow.cs" />
+    <Compile Include="Assets\EasyRunTime\Editor\EditorTool.cs" />
+    <Compile Include="Assets\EasyRunTime\Editor\EditorWithWindow.cs" />
+    <Compile Include="Assets\EasyRunTime\Editor\FindReferences.cs" />
+    <Compile Include="Assets\EasyRunTime\Editor\MainEditor.cs" />
+    <Compile Include="Assets\EasyRunTime\Editor\PathUtil.cs" />
+    <Compile Include="Assets\EasyRunTime\Editor\ShowAllNotUseResource.cs" />
+    <Compile Include="Assets\EasyRunTime\Editor\UnityDllPublishCommand.cs" />
     <Compile Include="Assets\OtherPlugins\Demigiant\DOTweenPro\Editor\DOTweenAnimationInspector.cs" />
     <Compile Include="Assets\OtherPlugins\Demigiant\DOTweenPro\Editor\DOTweenPreviewManager.cs" />
     <Compile Include="Assets\OtherPlugins\ILRunTime\ILRuntime\Adapters\Editor\ILRuntimeCLRBinding.cs" />
     <Compile Include="Assets\OtherPlugins\ILRunTime\Scripts\Examples\08_MonoBehaviour\Editor\MonoBehaviourAdapterEditor.cs" />
-    <Compile Include="Assets\Scripts\Editor\DependentsCrosses.cs" />
-    <Compile Include="Assets\Scripts\Editor\EditorAssetBundleWin.cs" />
-    <Compile Include="Assets\Scripts\Editor\EditorBase.cs" />
-    <Compile Include="Assets\Scripts\Editor\EditorClientWindow.cs" />
-    <Compile Include="Assets\Scripts\Editor\EditorDLL.cs" />
-    <Compile Include="Assets\Scripts\Editor\EditorMainWindow.cs" />
-    <Compile Include="Assets\Scripts\Editor\EditorTool.cs" />
-    <Compile Include="Assets\Scripts\Editor\EditorWithWindow.cs" />
-    <Compile Include="Assets\Scripts\Editor\FindReferences.cs" />
-    <Compile Include="Assets\Scripts\Editor\MainEditor.cs" />
-    <Compile Include="Assets\Scripts\Editor\ShowAllNotUseResource.cs" />
+    <Compile Include="Assets\OtherPlugins\Unity-Logs-Viewer\Reporter\Editor\ReporterEditor.cs" />
     <None Include="Assets\OtherPlugins\Demigiant\DemiLib\Core\Editor\DemiEditor.xml" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>F:/MyWork/EasyILRuntime/ILRuntime/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
