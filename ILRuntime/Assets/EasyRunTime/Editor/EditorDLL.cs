@@ -46,7 +46,7 @@ namespace K.Editors
             public bool isAudoCopy = false;
         }
         [SerializeField]
-        internal DllConfig config;
+        DllPublishConfigModel _cfg;
         public string configName = "DllEditor.json";
         public static void Open()
         {
@@ -57,83 +57,52 @@ namespace K.Editors
         }
         private void OnEnable()
         {
-            config = LoadConfig<DllConfig>(configName);
-            if (config == null)
-            {
-                config = new DllConfig();
-            }
+            _cfg = new DllPublishConfigModel();
 
         }
         private void OnGUI()
         {
             EditorGUILayout.BeginVertical();
-            EditorGUILayout.BeginHorizontal();
             if (GUILayout.Button("保存配置"))
             {
-                SaveConfig(config, configName);
+                _cfg.Save();
             }
-            if (GUILayout.Button("拷贝代码"))
-            {
-                CopyDll();
-            }
+            //if (GUILayout.Button("拷贝代码"))
+            //{
+            //    CopyDll();
+            //}
             if (GUILayout.Button("生成DLL"))
             {
                 CreatDll();
             }
-            EditorGUILayout.EndHorizontal();
+            _cfg.VO.resDir = EditorGUILayout.TextField("Res目录:", _cfg.VO.resDir);
+            GUILayout.Space(10);
+
+            _cfg.VO.ilDevelopDir = EditorGUILayout.TextField("DLL开发目录:", _cfg.VO.ilDevelopDir);
             EditorGUILayout.EndVertical();
         }
         private void CreatDll()
         {
-            string[] scriptPaths = Directory.GetFiles(config.ilDevelopDir, "*.cs", SearchOption.AllDirectories);
-            AssemblyBuilder ab = new AssemblyBuilder(config.outPath, scriptPaths);
-            ab.additionalReferences = GetDepends();
-            ab.buildFinished += OnFinished;
-            if (false == ab.Build())
-            {
-              //  onFinished?.Invoke(this, false);
-              //  onFinished = null;
-            }
-            //string srcPath = Path.Combine(Application.dataPath, "../RunTimeFrame/RunTimeFrame/codes");
-            //string[] sources = new[] { Path.Combine(srcPath, "Test.cs") };
-            //string[] references = new string[0];
-            //string[] defines = new string[0];
-            //string outputFile = Path.Combine(Application.dataPath, "RunTimeFrame.dll");
-
-            //string[] msgs = EditorUtility.CompileCSharp(sources, references, defines, outputFile);
-            //foreach (var msg in msgs)
+            //if (_cfg.VO.isAudoCopy)
             //{
-            //    Debug.Log(msg);
+            //    Copy2DllProj();
             //}
 
-            //string dllFile = "Assets/RunTimeFrame.dll";
-            //if (File.Exists(dllFile))
-            //{
-            //    AssetDatabase.ImportAsset(dllFile, ImportAssetOptions.ForceUpdate);
-            //}
+            var cmd = new UnityDllPublishCommand();
+            cmd.onFinished += OnFinished;
+            //cmd.onComplete += OnPublishDllComplete;
+            cmd.Execute();
         }
-        private void OnFinished(string path, CompilerMessage[] msgs)
+        private void OnFinished(UnityDllPublishCommand cmd, bool isSuccess)
         {
-            bool isFail = false;
-            foreach (var msg in msgs)
+            if (isSuccess)
             {
-                if (msg.type == CompilerMessageType.Error)
-                {
-                    Debug.LogError(msg.message);
-                    isFail = true;
-                }
-            }
-
-            if (isFail)
-            {
-              //  onFinished?.Invoke(this, false);
+                UnityEngine.Debug.Log("dll release success");
             }
             else
             {
-              //  onFinished?.Invoke(this, true);
+                UnityEngine.Debug.Log("dll release fail");
             }
-
-          //  onFinished = null;
         }
         string[] GetDepends()
         {
@@ -163,26 +132,6 @@ namespace K.Editors
             Array.Copy(dllList1, 0, depends, dllList0.Length, dllList1.Length);
             Array.Copy(dllList2, 0, depends, dllList0.Length + dllList1.Length, dllList2.Length);
             return depends;
-        }
-
-        private void CopyDll()
-        {
-            string projCodeDir = Path.Combine(config.ilProjDir, "codes");
-            // EditorUtility.CompileCSharp()
-            if (Directory.Exists(config.ilDevelopDir))
-            {
-                if (Directory.Exists(projCodeDir))
-                {
-                    Directory.Delete(projCodeDir, true);
-                }
-                FileUtil.CopyFileOrDirectory(config.ilDevelopDir, projCodeDir);
-                AssetDatabase.Refresh();
-            }
-            else
-            {
-                ShowNotification(new GUIContent("文件夹不存在"));
-            }
-            Debug.Log("拷贝完成");
         }
     }
 }
